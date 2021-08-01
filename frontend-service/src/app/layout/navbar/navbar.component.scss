@@ -1,0 +1,25 @@
+.navbar {
+  height: 50px;
+  background: #f3f3f4;
+}
+
+.navbar .nav-link {
+  border-radius: 3px;
+}
+
+.navbar .nav-link:hover {
+  color: #f3f3f4;
+  background: #294258;
+}
+
+.navbar .navbar-brand {
+  width: 240px;
+  margin: 0px;
+}
+
+.toggle {
+  height: 50px;
+  width: 50px;
+  padding: 12.6px;
+  cursor: pointer;
+}

@@ -1,0 +1,113 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Civilian {
+  id: ID!
+  firstName: String!
+  lastName: String!
+  dob: String!
+  nid: String!
+  phone: String!
+  email: String!
+  gender: String!
+  materialStatus: String!
+  jobType: String!
+  jobCategory: String!
+  monthlyIncome: Float!
+  educationLevel: String!
+  educationDetails: String!
+  familyId: String!
+}
+
+type Family {
+  id: ID!
+  name: String!
+  proviceId: String!
+  districtId: String!
+  divisionalId: String!
+  vasamaId: String!
+}
+
+type CivilianTransfer {
+  id: ID!
+  civilianId: String!
+  fromId: String!
+  toId: String!
+}
+
+type Query {
+  getAllCivilian: [Civilian!]!
+  civilianById(id: String!): Civilian!
+  getAllFamilies: [Family!]!
+  familyById(id: String!): Family!
+  getAllCivilianTransfer: [CivilianTransfer!]!
+  civilianTransferById(id: String!): CivilianTransfer!
+}
+
+type Mutation {
+  createCivilian(createCivilianInput: CreateCivilianInput!): Civilian!
+  updateCivilian(updateCivilianInput: UpdateCivilianInput!, id: String!): Civilian!
+  removeCivilian(id: String!): Civilian!
+  createFamily(createFamilyInput: CreateFamilyInput!): Family!
+  updateFamily(updateFamilyInput: UpdateFamilyInput!, id: String!): Family!
+  removeFamily(id: String!): Family!
+  createCivilianTransfer(createCivilianTransferInput: CreateCivilianTransferInput!): CivilianTransfer!
+  removeCivilianTransfer(id: String!): CivilianTransfer!
+}
+
+input CreateCivilianInput {
+  firstName: String!
+  lastName: String!
+  dob: String!
+  nid: String!
+  phone: String!
+  email: String!
+  gender: String!
+  materialStatus: String!
+  jobType: String!
+  jobCategory: String!
+  monthlyIncome: Float!
+  educationLevel: String!
+  educationDetails: String!
+  familyId: String!
+}
+
+input UpdateCivilianInput {
+  firstName: String!
+  lastName: String!
+  dob: String
+  nid: String
+  phone: String!
+  email: String!
+  gender: String
+  materialStatus: String!
+  jobType: String!
+  jobCategory: String!
+  monthlyIncome: Float!
+  educationLevel: String!
+  educationDetails: String!
+  familyId: String!
+}
+
+input CreateFamilyInput {
+  name: String!
+  proviceId: String!
+  districtId: String!
+  divisionalId: String!
+  vasamaId: String!
+}
+
+input UpdateFamilyInput {
+  name: String!
+  proviceId: String!
+  districtId: String!
+  divisionalId: String!
+  vasamaId: String!
+}
+
+input CreateCivilianTransferInput {
+  civilianId: String!
+  fromId: String!
+  toId: String!
+}

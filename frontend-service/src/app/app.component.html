@@ -1,0 +1,6 @@
+<app-navbar fxLayout="row" (toggleEvent)="setOpened($event)"></app-navbar>
+<app-sidebar fxLayout="column" [opened]="opened"></app-sidebar>
+
+<div class="home-content" [class.active-sidebar]="opened">
+    <router-outlet></router-outlet>
+</div>

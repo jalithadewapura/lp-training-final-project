@@ -1,0 +1,15 @@
+// home-content
+
+.home-content {
+  position: absolute;
+  height: calc(100%-50px);
+  width: calc(100% - 80px);
+  top: 50px;
+  left: 80px;
+  transition: all 0.5s ease;
+}
+
+.active-sidebar.home-content {
+  width: calc(100% - 240px);
+  left: 240px;
+}
