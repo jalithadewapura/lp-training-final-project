@@ -1,0 +1,112 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Vasama {
+  id: ID!
+  name: String!
+  code: String!
+  divisionId: String!
+  division: Division!
+}
+
+type Division {
+  id: ID!
+  name: String!
+  code: String!
+  districtId: String!
+  district: District!
+  vasam: [Vasama!]!
+}
+
+type District {
+  id: String!
+  name: String!
+  code: String!
+  provinceId: String!
+  province: Province!
+  divisions: [Division!]!
+}
+
+type Province {
+  id: String!
+  name: String!
+  code: String!
+  districts: [District!]
+}
+
+type Query {
+  getAllProvince: [Province!]!
+  provinceById(id: String!): Province!
+  getAllDistrict: [District!]!
+  districtById(id: String!): District!
+  getAllDivision: [Division!]!
+  divisionById(id: String!): Division!
+  getAllVasama: [Vasama!]!
+  vasamaById(id: String!): Vasama!
+}
+
+type Mutation {
+  createProvince(createProvinceInput: CreateProvinceInput!): Province!
+  updateProvince(updateProvinceInput: UpdateProvinceInput!): Province!
+  removeProvince(id: String!): Province!
+  createDistrict(createDistrictInput: CreateDistrictInput!): District!
+  updateDistrict(updateDistrictInput: UpdateDistrictInput!): District!
+  removeDistrict(id: String!): District!
+  createDivision(createDivisionInput: CreateDivisionInput!): Division!
+  updateDivision(updateDivisionInput: UpdateDivisionInput!): Division!
+  removeDivision(id: String!): Division!
+  createVasama(createVasamaInput: CreateVasamaInput!): Vasama!
+  updateVasama(updateVasamaInput: UpdateVasamaInput!): Vasama!
+  removeVasama(id: String!): Vasama!
+}
+
+input CreateProvinceInput {
+  name: String!
+  code: String!
+}
+
+input UpdateProvinceInput {
+  name: String!
+  code: String!
+  id: String!
+}
+
+input CreateDistrictInput {
+  name: String!
+  code: String!
+  provinceId: String!
+}
+
+input UpdateDistrictInput {
+  name: String!
+  code: String!
+  provinceId: String!
+  id: String!
+}
+
+input CreateDivisionInput {
+  name: String!
+  code: String!
+  districtId: String!
+}
+
+input UpdateDivisionInput {
+  id: String!
+  name: String!
+  code: String!
+  districtId: String!
+}
+
+input CreateVasamaInput {
+  name: String!
+  code: String!
+  divisionId: String!
+}
+
+input UpdateVasamaInput {
+  id: String!
+  name: String!
+  code: String!
+  divisionId: String!
+}
