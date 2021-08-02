@@ -1,4 +1,4 @@
-import { Resolver, Query, Mutation, Args, Int, ResolveField, Parent } from '@nestjs/graphql';
+import { Resolver, Query, Mutation, Args, Int, ResolveField, Parent, ResolveReference } from '@nestjs/graphql';
 import { ProvinceService } from './province.service';
 import { Province } from './entities/province.entity';
 import { CreateProvinceInput } from './dto/create-province.input';
@@ -33,9 +33,9 @@ export class ProvinceResolver {
     return this.provinceService.remove(id);
   }
 
+  @ResolveReference()
+  resolvereference(ref: { __typename: string, id: string }) {
+    return this.provinceService.findOne(ref.id);
+  }
 
-  // @ResolveField(() => [District])
-  // districts(@Parent() province: Province) {
-  //   return this.provinceService.getDistricts(province.id);
-  // }
 }

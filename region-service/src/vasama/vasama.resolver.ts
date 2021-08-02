@@ -1,5 +1,5 @@
 import { Division } from 'src/division/entities/division.entity';
-import { Resolver, Query, Mutation, Args, Int, ResolveField, Parent } from '@nestjs/graphql';
+import { Resolver, Query, Mutation, Args, Int, ResolveField, Parent, ResolveReference } from '@nestjs/graphql';
 import { VasamaService } from './vasama.service';
 import { Vasama } from './entities/vasama.entity';
 import { CreateVasamaInput } from './dto/create-vasama.input';
@@ -37,5 +37,10 @@ export class VasamaResolver {
   @ResolveField(() => Division)
   division(@Parent() vasama: Vasama) {
     return this.vasamaService.getDivision(vasama.divisionId);
+  }
+
+  @ResolveReference()
+  resolvereference(ref: { __typename: string, id: string }) {
+    return this.vasamaService.findOne(ref.id);
   }
 }

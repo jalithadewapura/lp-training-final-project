@@ -1,10 +1,11 @@
 import { Division } from 'src/division/entities/division.entity';
-import { ObjectType, Field, Int } from '@nestjs/graphql';
+import { ObjectType, Field, Int, Directive } from '@nestjs/graphql';
 import { Province } from 'src/province/entities/province.entity';
 import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 @ObjectType()
 @Entity()
+@Directive('@key(field: "id")')
 export class District {
   @Field()
   @PrimaryGeneratedColumn('uuid')

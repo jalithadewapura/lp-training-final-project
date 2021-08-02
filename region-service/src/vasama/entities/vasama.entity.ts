@@ -1,9 +1,10 @@
 import { Division } from 'src/division/entities/division.entity';
-import { ObjectType, Field, Int, ID } from '@nestjs/graphql';
+import { ObjectType, Field, Int, ID, Directive } from '@nestjs/graphql';
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 
 @ObjectType()
 @Entity()
+@Directive('@key(field: "id")')
 export class Vasama {
   @Field(() => ID)
   @PrimaryGeneratedColumn('uuid')

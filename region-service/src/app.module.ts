@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { GraphQLModule } from '@nestjs/graphql';
+import { GraphQLFederationModule } from '@nestjs/graphql';
 import { join } from 'path';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
@@ -22,7 +22,7 @@ import { VasamaModule } from './vasama/vasama.module';
       synchronize: true,
 
     }),
-    GraphQLModule.forRoot({
+    GraphQLFederationModule.forRoot({
       autoSchemaFile: join(process.cwd(), 'src/schemas/gql-schema.gql'),
     }),
     ProvinceModule,

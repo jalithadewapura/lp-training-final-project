@@ -1,5 +1,5 @@
 import { District } from 'src/district/entities/district.entity';
-import { Resolver, Query, Mutation, Args, Int, ResolveField, Parent } from '@nestjs/graphql';
+import { Resolver, Query, Mutation, Args, Int, ResolveField, Parent, ResolveReference } from '@nestjs/graphql';
 import { DivisionService } from './division.service';
 import { Division } from './entities/division.entity';
 import { CreateDivisionInput } from './dto/create-division.input';
@@ -39,6 +39,10 @@ export class DivisionResolver {
     return this.divisionService.getDistrict(division.districtId);
   }
 
+  @ResolveReference()
+  resolvereference(ref: { __typename: string, id: string }) {
+    return this.divisionService.findOne(ref.id);
+  }
 
 }
 
