@@ -1,4 +1,4 @@
-import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
+import { Resolver, Query, Mutation, Args, Int, ResolveReference } from '@nestjs/graphql';
 import { CivilianTransferService } from './civilian-transfer.service';
 import { CivilianTransfer } from './entities/civilian-transfer.entity';
 import { CreateCivilianTransferInput } from './dto/create-civilian-transfer.input';
@@ -26,5 +26,10 @@ export class CivilianTransferResolver {
   @Mutation(() => CivilianTransfer)
   removeCivilianTransfer(@Args('id') id: string) {
     return this.civilianTransferService.remove(id);
+  }
+
+  @ResolveReference()
+  resolvereference(ref: { __typename: string, id: string }) {
+    return this.civilianTransferService.findOne(ref.id);
   }
 }

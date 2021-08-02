@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { GraphQLModule } from '@nestjs/graphql';
+import { GraphQLFederationModule } from '@nestjs/graphql';
 import { MongooseModule } from '@nestjs/mongoose';
 import { join } from 'path';
 import { MONGO_CONNECTION } from './app.properties';
@@ -11,7 +11,7 @@ import { CivilianTransferModule } from './civilian-transfer/civilian-transfer.mo
   imports: [
     CivilianModule,
     FamilyModule,
-    GraphQLModule.forRoot({
+    GraphQLFederationModule.forRoot({
       autoSchemaFile: join(process.cwd(), 'src/schemas/graphql-schema.gql'),
     }),
     MongooseModule.forRoot(MONGO_CONNECTION),

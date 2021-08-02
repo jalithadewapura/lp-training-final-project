@@ -1,4 +1,4 @@
-import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
+import { Resolver, Query, Mutation, Args, Int, ResolveReference } from '@nestjs/graphql';
 import { FamilyService } from './family.service';
 import { Family } from './entities/family.entity';
 import { CreateFamilyInput } from './dto/create-family.input';
@@ -31,5 +31,10 @@ export class FamilyResolver {
   @Mutation(() => Family)
   removeFamily(@Args('id') id: string) {
     return this.familyService.remove(id);
+  }
+
+  @ResolveReference()
+  resolvereference(ref: { __typename: string, id: string }) {
+    return this.familyService.findOne(ref.id);
   }
 }
