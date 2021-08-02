@@ -4,7 +4,7 @@ import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 
 @ObjectType()
 @Entity()
-@Directive('@key(field: "id")')
+@Directive('@key(fields: "id")')
 export class Vasama {
   @Field(() => ID)
   @PrimaryGeneratedColumn('uuid')

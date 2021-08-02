@@ -5,7 +5,7 @@ import { Column, Entity, PrimaryGeneratedColumn, ManyToOne, OneToMany } from 'ty
 
 @ObjectType()
 @Entity()
-@Directive('@key(field: "id")')
+@Directive('@key(fields: "id")')
 export class Division {
   @Field((type) => ID)
   @PrimaryGeneratedColumn('uuid')

@@ -4,7 +4,7 @@ import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 @ObjectType()
 @Entity()
-@Directive('@key(field: "id")')
+@Directive('@key(fields: "id")')
 export class Province {
   @Field()
   @PrimaryGeneratedColumn('uuid')

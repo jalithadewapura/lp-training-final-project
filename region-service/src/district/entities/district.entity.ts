@@ -5,7 +5,7 @@ import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'ty
 
 @ObjectType()
 @Entity()
-@Directive('@key(field: "id")')
+@Directive('@key(fields: "id")')
 export class District {
   @Field()
   @PrimaryGeneratedColumn('uuid')
