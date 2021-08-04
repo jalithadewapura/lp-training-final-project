@@ -1,9 +1,10 @@
+import { ObjectType, Field, ID, Directive } from '@nestjs/graphql';
 import { District } from 'src/family/entities/district.entity';
 import { Province } from 'src/family/entities/province.entity';
 import { Division } from 'src/family/entities/division.entity';
 import { Vasama } from 'src/family/entities/vasama.entity';
 
-import { ObjectType, Field, ID, Directive } from '@nestjs/graphql';
+import { Civilian } from 'src/civilian/entities/civilian.entity';
 
 @ObjectType()
 @Directive('@key(fields: "id")')
@@ -13,6 +14,9 @@ export class Family {
 
   @Field()
   name: string;
+
+  @Field()
+  address: string;
 
   @Field()
   provinceId: string;
@@ -38,4 +42,6 @@ export class Family {
   @Field(() => Vasama)
   vasama: Vasama;
 
+  @Field(() => [Civilian])
+  civilians: Civilian[]
 }

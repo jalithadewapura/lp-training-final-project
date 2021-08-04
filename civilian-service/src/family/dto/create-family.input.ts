@@ -7,6 +7,9 @@ export class CreateFamilyInput {
   name: string;
 
   @Field()
+  address: string;
+
+  @Field()
   provinceId: string;
 
   @Field()

@@ -1,5 +1,6 @@
-import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
-import { CivilianService } from './civilian.service';
+import { CivilianService } from 'src/civilian/civilian.service';
+import { Family } from 'src/family/entities/family.entity';
+import { Resolver, Query, Mutation, Args, Int, ResolveField, Parent } from '@nestjs/graphql';
 import { Civilian } from './entities/civilian.entity';
 import { CreateCivilianInput } from './dto/create-civilian.input';
 import { UpdateCivilianInput } from './dto/update-civilian.input';
@@ -32,4 +33,10 @@ export class CivilianResolver {
   removeCivilian(@Args('id') id: string) {
     return this.civilianService.remove(id);
   }
+
+  @ResolveField((of) => Family)
+  family(@Parent() civilian: Civilian) {
+    return this.civilianService.getFamily(civilian.familyId);
+  }
 }
+

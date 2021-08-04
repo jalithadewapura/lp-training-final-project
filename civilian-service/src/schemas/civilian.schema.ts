@@ -1,6 +1,5 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Gender, MaterialStatus } from 'src/civilian/entities/civilian.entity';
-import { Family } from 'src/family/entities/family.entity';
 import { Document } from 'mongoose';
 
 export type CivilianDocument = Civilian & Document;
@@ -16,13 +15,13 @@ export class Civilian {
     @Prop()
     dob: string;
 
-    @Prop()
+    @Prop({ nullable: true })
     nid: string;
 
-    @Prop()
+    @Prop({ nullable: true })
     phone: string;
 
-    @Prop()
+    @Prop({ nullable: true })
     email: string;
 
     @Prop()
@@ -31,26 +30,24 @@ export class Civilian {
     @Prop()
     materialStatus: MaterialStatus;
 
-    @Prop()
+    @Prop({ nullable: true })
     jobType: string;
 
-    @Prop()
+    @Prop({ nullable: true })
     jobCategory: string;
 
-    @Prop()
+    @Prop({ nullable: true })
     monthlyIncome: number;
 
-    @Prop()
+    @Prop({ nullable: true })
     educationLevel: string;
 
-    @Prop()
+    @Prop({ nullable: true })
     educationDetails: string;
 
     @Prop()
     familyId: string;
 
-    @Prop()
-    family: Family;
 }
 
 export const CivilianSchema = SchemaFactory.createForClass(Civilian);

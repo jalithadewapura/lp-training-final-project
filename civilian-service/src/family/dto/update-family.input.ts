@@ -7,6 +7,9 @@ export class UpdateFamilyInput extends PartialType(CreateFamilyInput) {
   name: string;
 
   @Field()
+  address: string;
+
+  @Field()
   provinceId: string;
 
   @Field()

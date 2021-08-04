@@ -7,6 +7,7 @@ import { FamilyService } from '../family.service';
 import { Family } from '../entities/family.entity';
 import { CreateFamilyInput } from '../dto/create-family.input';
 import { UpdateFamilyInput } from '../dto/update-family.input';
+import { Civilian } from 'src/civilian/entities/civilian.entity';
 
 @Resolver(() => Family)
 export class FamilyResolver {
@@ -35,6 +36,11 @@ export class FamilyResolver {
   @Mutation(() => Family)
   removeFamily(@Args('id') id: string) {
     return this.familyService.remove(id);
+  }
+
+  @ResolveField((of) => [Civilian])
+  civilians(@Parent() family: Family) {
+    return this.familyService.getCivilians(family.id);
   }
 
   @ResolveReference()

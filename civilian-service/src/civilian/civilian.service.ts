@@ -1,11 +1,12 @@
+import { FamilyService } from './../family/family.service';
 import { CivilianRepository } from './civilian.repository';
-import { Injectable } from '@nestjs/common';
+import { Injectable, forwardRef, Inject } from '@nestjs/common';
 import { CreateCivilianInput } from './dto/create-civilian.input';
 import { UpdateCivilianInput } from './dto/update-civilian.input';
 
 @Injectable()
 export class CivilianService {
-  constructor(private civilianRepository: CivilianRepository) { }
+  constructor(private civilianRepository: CivilianRepository, @Inject(forwardRef(() => FamilyService)) private familyService: FamilyService) { }
 
   create(createCivilianInput: CreateCivilianInput) {
     return this.civilianRepository.create(createCivilianInput);
@@ -25,5 +26,13 @@ export class CivilianService {
 
   remove(id: string) {
     return this.civilianRepository.remove(id);
+  }
+
+  findByFamily(familyId: string) {
+    return this.civilianRepository.findByFamily(familyId);
+  }
+
+  getFamily(familyId: string) {
+    return this.familyService.findOne(familyId);
   }
 }

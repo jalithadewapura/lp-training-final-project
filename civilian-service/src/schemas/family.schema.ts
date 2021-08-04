@@ -9,6 +9,9 @@ export class Family {
     name: string;
 
     @Prop()
+    address: string;
+
+    @Prop()
     provinceId: string;
 
     @Prop()

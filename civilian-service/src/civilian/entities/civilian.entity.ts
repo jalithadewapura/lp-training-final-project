@@ -1,4 +1,4 @@
-import { Family } from '../../family/entities/family.entity';
+import { Family } from 'src/family/entities/family.entity';
 import { ObjectType, Field, Int, ID } from '@nestjs/graphql';
 
 @ObjectType()
@@ -15,13 +15,13 @@ export class Civilian {
   @Field()
   dob: string;
 
-  @Field()
+  @Field({ nullable: true })
   nid: string;
 
-  @Field()
+  @Field({ nullable: true })
   phone: string;
 
-  @Field()
+  @Field({ nullable: true })
   email: string;
 
   @Field()
@@ -30,23 +30,26 @@ export class Civilian {
   @Field()
   materialStatus: MaterialStatus;
 
-  @Field()
+  @Field({ nullable: true })
   jobType: string;
 
-  @Field()
+  @Field({ nullable: true })
   jobCategory: string;
 
-  @Field()
+  @Field({ nullable: true })
   monthlyIncome: number;
 
-  @Field()
+  @Field({ nullable: true })
   educationLevel: string;
 
-  @Field()
+  @Field({ nullable: true })
   educationDetails: string;
 
   @Field()
   familyId: string;
+
+  @Field(() => Family)
+  family: Family;
 
 }
 

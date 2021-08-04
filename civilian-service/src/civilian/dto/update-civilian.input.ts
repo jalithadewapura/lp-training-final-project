@@ -11,28 +11,28 @@ export class UpdateCivilianInput extends PartialType(CreateCivilianInput) {
   @Field()
   lastName: string;
 
-  @Field()
+  @Field({ nullable: true })
   phone: string;
 
-  @Field()
+  @Field({ nullable: true })
   email: string;
 
   @Field()
   materialStatus: MaterialStatus;
 
-  @Field()
+  @Field({ nullable: true })
   jobType: string;
 
-  @Field()
+  @Field({ nullable: true })
   jobCategory: string;
 
-  @Field()
+  @Field({ nullable: true })
   monthlyIncome: number;
 
-  @Field()
+  @Field({ nullable: true })
   educationLevel: string;
 
-  @Field()
+  @Field({ nullable: true })
   educationDetails: string;
 
   @Field()

@@ -13,13 +13,13 @@ export class CreateCivilianInput {
   @Field()
   dob: string;
 
-  @Field()
+  @Field({ nullable: true })
   nid: string;
 
-  @Field()
+  @Field({ nullable: true })
   phone: string;
 
-  @Field()
+  @Field({ nullable: true })
   email: string;
 
   @Field()
@@ -28,19 +28,19 @@ export class CreateCivilianInput {
   @Field()
   materialStatus: MaterialStatus;
 
-  @Field()
+  @Field({ nullable: true })
   jobType: string;
 
-  @Field()
+  @Field({ nullable: true })
   jobCategory: string;
 
-  @Field()
+  @Field({ nullable: true })
   monthlyIncome: number;
 
-  @Field()
+  @Field({ nullable: true })
   educationLevel: string;
 
-  @Field()
+  @Field({ nullable: true })
   educationDetails: string;
 
   @Field()

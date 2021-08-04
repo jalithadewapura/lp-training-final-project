@@ -36,4 +36,8 @@ export class CivilianRepository {
         if (isValidObjectId(id))
             return await this.civilianModel.findByIdAndRemove(id);
     }
+
+    async findByFamily(familyId: string): Promise<Civilian[]> {
+        return this.civilianModel.find({ 'familyId': familyId });
+    }
 }
