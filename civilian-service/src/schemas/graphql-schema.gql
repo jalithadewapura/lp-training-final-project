@@ -12,6 +12,39 @@ directive @requires(fields: String!) on FIELD_DEFINITION
 
 directive @provides(fields: String!) on FIELD_DEFINITION
 
+type Province {
+  id: ID!
+  families: [Family!]!
+}
+
+type Division {
+  id: ID!
+  families: [Family!]!
+}
+
+type Vasama {
+  id: ID!
+  families: [Family!]!
+}
+
+type Family {
+  id: ID!
+  name: String!
+  provinceId: String!
+  province: Province!
+  districtId: String!
+  district: District!
+  divisionId: String!
+  division: Division!
+  vasamaId: String!
+  vasama: Vasama!
+}
+
+type District {
+  id: ID!
+  families: [Family!]!
+}
+
 type Civilian {
   id: ID!
   firstName: String!
@@ -28,15 +61,6 @@ type Civilian {
   educationLevel: String!
   educationDetails: String!
   familyId: String!
-}
-
-type Family {
-  id: ID!
-  name: String!
-  proviceId: String!
-  districtId: String!
-  divisionalId: String!
-  vasamaId: String!
 }
 
 type CivilianTransfer {
@@ -102,17 +126,17 @@ input UpdateCivilianInput {
 
 input CreateFamilyInput {
   name: String!
-  proviceId: String!
+  provinceId: String!
   districtId: String!
-  divisionalId: String!
+  divisionId: String!
   vasamaId: String!
 }
 
 input UpdateFamilyInput {
   name: String!
-  proviceId: String!
+  provinceId: String!
   districtId: String!
-  divisionalId: String!
+  divisionId: String!
   vasamaId: String!
 }
 

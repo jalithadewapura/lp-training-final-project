@@ -2,6 +2,7 @@ import { FamilyRepository } from './family.repository';
 import { Injectable } from '@nestjs/common';
 import { CreateFamilyInput } from './dto/create-family.input';
 import { UpdateFamilyInput } from './dto/update-family.input';
+import { Family } from 'src/schemas/family.schema';
 
 @Injectable()
 export class FamilyService {
@@ -25,5 +26,21 @@ export class FamilyService {
 
   remove(id: string) {
     return this.familyRepository.remove(id);
+  }
+
+  async findByProvince(provinceId): Promise<Family[]> {
+    return await this.familyRepository.findByProvince(provinceId);
+  }
+
+  async findByDistrict(districtId): Promise<Family[]> {
+    return await this.familyRepository.findByDistrict(districtId);
+  }
+
+  async findByDivision(divisionId): Promise<Family[]> {
+    return await this.familyRepository.findByDivision(divisionId);
+  }
+
+  async findByVasama(vasamaId): Promise<Family[]> {
+    return await this.familyRepository.findByVasama(vasamaId);
   }
 }

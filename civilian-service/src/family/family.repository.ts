@@ -23,6 +23,22 @@ export class FamilyRepository {
         if (isValidObjectId(id)) return await this.familyModel.findById(id);
     }
 
+    async findByProvince(provinceId: string): Promise<Family[]> {
+        return await this.familyModel.find({ 'provinceId': provinceId });
+    }
+
+    async findByDistrict(districtId: string): Promise<Family[]> {
+        return await this.familyModel.find({ 'districtId': districtId });
+    }
+
+    async findByDivision(divisionId: string): Promise<Family[]> {
+        return await this.familyModel.find({ 'divisionId': divisionId });
+    }
+
+    async findByVasama(vasamaId: string): Promise<Family[]> {
+        return await this.familyModel.find({ 'vasamaId': vasamaId });
+    }
+
     async update(id: string, updatePetInput: UpdateFamilyInput): Promise<Family> {
         if (isValidObjectId(id))
             return await this.familyModel.findByIdAndUpdate(id, updatePetInput, {

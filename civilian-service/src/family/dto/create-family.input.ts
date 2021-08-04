@@ -7,13 +7,13 @@ export class CreateFamilyInput {
   name: string;
 
   @Field()
-  proviceId: string;
+  provinceId: string;
 
   @Field()
   districtId: string;
 
   @Field()
-  divisionalId: string;
+  divisionId: string;
 
   @Field()
   vasamaId: string;

@@ -30,7 +30,7 @@ type Division {
 }
 
 type District {
-  id: String!
+  id: ID!
   name: String!
   code: String!
   provinceId: String!
@@ -39,7 +39,7 @@ type District {
 }
 
 type Province {
-  id: String!
+  id: ID!
   name: String!
   code: String!
   districts: [District!]

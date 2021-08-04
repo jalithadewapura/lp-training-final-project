@@ -9,13 +9,13 @@ export class Family {
     name: string;
 
     @Prop()
-    proviceId: string;
+    provinceId: string;
 
     @Prop()
     districtId: string;
 
     @Prop()
-    divisionalId: string;
+    divisionId: string;
 
     @Prop()
     vasamaId: string;

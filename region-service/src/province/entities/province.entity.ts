@@ -1,12 +1,12 @@
 import { District } from '../../district/entities/district.entity';
-import { ObjectType, Field, Int, Directive } from '@nestjs/graphql';
+import { ObjectType, Field, Int, Directive, ID } from '@nestjs/graphql';
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 @ObjectType()
 @Entity()
 @Directive('@key(fields: "id")')
 export class Province {
-  @Field()
+  @Field((type) => ID)
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
