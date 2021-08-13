@@ -4,10 +4,10 @@ import { Observable } from 'rxjs';
 
 
 const CREATE_CIVILIAN = gql`
-  mutation createCivilian($firstName: String!, $lastName: String!, $dob: String!, $nid: String!, 
-      $phone: String!, $email: String!, $gender: String!, $materialStatus: String!, $jobStatus:String!, 
-      $monthlyIncome: Float!, $jobType: String!, $jobCategory: String!, $educationLevel: String!, 
-      $educationDetails: String!, $familyId: String! ) {
+  mutation createCivilian($firstName: String!, $lastName: String!, $dob: String!, $nid: String, 
+      $phone: String, $email: String, $gender: String!, $materialStatus: String!, $jobStatus:String!, 
+      $monthlyIncome: Float, $jobType: String, $jobCategory: String, $educationLevel: String, 
+      $educationDetails: String, $familyId: String! ) {
     
     createCivilian(
       createCivilianInput: 

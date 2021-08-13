@@ -2,28 +2,29 @@ import { CivilianService } from 'src/app/services/civilian.service';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { MAT_DATE_FORMATS } from '@angular/material/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
+import { DatePipe } from '@angular/common';
 
-export const MY_DATE_FORMATS = {
-  parse: {
-    dateInput: 'DD/MM/YYYY',
-  },
-  display: {
-    dateInput: 'YYYY-MM-DD',
-    monthYearLabel: 'MMMM YYYY',
-    dateA11yLabel: 'LL',
-    monthYearA11yLabel: 'MMMM YYYY'
-  },
-};
+// export const MY_DATE_FORMATS = {
+//   parse: {
+//     dateInput: 'DD/MM/YYYY',
+//   },
+//   display: {
+//     dateInput: 'YYYY-MM-DD',
+//     monthYearLabel: 'MMMM YYYY',
+//     dateA11yLabel: 'LL',
+//     monthYearA11yLabel: 'MMMM YYYY'
+//   },
+// };
 
 @Component({
   selector: 'app-create',
   templateUrl: './create.component.html',
   styleUrls: ['./create.component.scss'],
-  providers: [
-    { provide: MAT_DATE_FORMATS, useValue: MY_DATE_FORMATS }
-  ]
+  //   providers: [
+  //     { provide: MAT_DATE_FORMATS, useValue: MY_DATE_FORMATS }
+  //   ]
 })
 export class CreateComponent implements OnInit {
 
@@ -63,30 +64,36 @@ export class CreateComponent implements OnInit {
   ];
 
   familyId: string;
-  dob: string; //mat-date-picker
+  age: number;
+  dob;
+  currentDate;
+  nidRequiredAge: number = 18;
+  isNidRequired: boolean;
 
-  constructor(private civilianService: CivilianService, private route: ActivatedRoute) { }
+  constructor(private civilianService: CivilianService, private route: ActivatedRoute, private router: Router, private datePipe: DatePipe) {
+    this.currentDate = this.datePipe.transform(this.currentDate, 'yyyy-MM-dd');
+  }
 
   ngOnInit(): void {
     this.familyId = this.route.snapshot.paramMap.get('familyId');
   }
 
-  createCivilian(firstName: string, lastName: string, dob: string, nid: string, phone: string, email: string,
-    gender: string, materialStatus: string, jobStatus: string, monthlyIncome: number, jobType: string, jobCategory: string,
-    educationLevel: string, educationDetails: string, familyId: string) {
-
-    this.civilianService.createCivilian(firstName, lastName, dob, nid, phone, email, gender, materialStatus,
-      jobStatus, monthlyIncome, jobType, jobCategory, educationLevel, educationDetails, familyId).subscribe((result) => {
-        console.log(result.data.createCivilian);
-      });
-  }
-
   onChangeDob(value) {
-    console.log(value);
+    this.dob = new Date(value);
+    this.currentDate = new Date();
+    this.age = this.currentDate.getYear() - this.dob.getYear();
+
+    if (this.age >= this.nidRequiredAge)
+      this.isNidRequired = true;
+    else
+      this.isNidRequired = false;
   }
+
   onSubmit(form: NgForm) {
+    console.log(form.value);
     if (form.valid) {
-      this.createCivilian(
+
+      this.civilianService.createCivilian(
         form.value.firstName,
         form.value.lastName,
         form.value.dob,
@@ -101,7 +108,17 @@ export class CreateComponent implements OnInit {
         form.value.jobCategory,
         form.value.educationLevel,
         form.value.educationDetails,
-        this.familyId);
+        this.familyId).subscribe((data) => {
+          const result = data.data.createCivilian;
+          console.log(data.data.createCivilian);
+
+          if (result.id) {
+            this.router.navigate(['/family/' + this.familyId]);
+          }
+        });
+
     }
+
+
   }
 }

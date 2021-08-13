@@ -6,10 +6,11 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.scss']
 })
+
 export class ListComponent implements OnInit {
   families = [];
-  constructor(private familyService: FamilyService) { }
 
+  constructor(private familyService: FamilyService) { }
 
   getFamilies() {
     this.familyService.getFamilies().subscribe((data) => {

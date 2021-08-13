@@ -5,7 +5,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
 import { CivilianRoutingModule } from './civilian-routing.module';
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { MomentDateModule } from '@angular/material-moment-adapter';
 
 import { CreateComponent } from './create/create.component';
@@ -23,5 +23,8 @@ import { UpdateComponent } from './update/update.component';
     MatNativeDateModule,
     MomentDateModule
   ],
+  providers: [
+    DatePipe
+  ]
 })
 export class CivilianModule { }
