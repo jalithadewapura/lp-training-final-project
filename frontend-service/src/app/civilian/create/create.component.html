@@ -14,8 +14,10 @@
                 </div>
                 <div class="form-group col-md-6">
                     <label for="lastName">Last Name</label>
-                    <input type="text" class="form-control form-control-sm" ngModel name="lastName" id="lastName"
-                        placeholder="Last Name / Surname">
+                    <input type="text" required class="form-control form-control-sm" ngModel name="lastName"
+                        #lastName="ngModel" id="lastName" placeholder="Last Name / Surname">
+                    <div class="alert alert-danger" *ngIf="lastName.touched && !lastName.valid">Last Name is
+                        required.</div>
                 </div>
             </div>
             <!-- /.first name last name  -->
@@ -74,7 +76,7 @@
                         </div>
                     </div>
                     <div class="alert alert-danger" *ngIf="gender.touched && gender.invalid">
-                        <div *ngIf="gender.errors.required">DOB is required.</div>
+                        <div *ngIf="gender.errors.required">Gender is required.</div>
                     </div>
                 </div>
                 <!-- Gender -->
@@ -103,7 +105,7 @@
                         </div>
                     </div>
                     <div class="alert alert-danger" *ngIf="status.touched && status.invalid">
-                        <div *ngIf="status.errors.required">DOB is required.</div>
+                        <div *ngIf="status.errors.required">Material status is required.</div>
                     </div>
                 </div>
                 <!-- /.material Status -->
@@ -117,7 +119,7 @@
                         <option *ngFor="let jStatus of jobStatus" value="{{ jStatus.id }}">{{ jStatus.name }}</option>
                     </select>
                     <div class="alert alert-danger" *ngIf="jStatus.touched && jStatus.invalid">
-                        <div *ngIf="jStatus.errors.required">DOB is required.</div>
+                        <div *ngIf="jStatus.errors.required">Job status is required.</div>
                     </div>
                 </div>
 
