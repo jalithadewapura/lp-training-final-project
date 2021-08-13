@@ -1,4 +1,3 @@
-import { Family } from './../../family/entities/family.entity';
 import { CreateCivilianInput } from './create-civilian.input';
 import { InputType, Field, Int, PartialType } from '@nestjs/graphql';
 import { MaterialStatus } from '../entities/civilian.entity';
@@ -19,6 +18,9 @@ export class UpdateCivilianInput extends PartialType(CreateCivilianInput) {
 
   @Field()
   materialStatus: MaterialStatus;
+
+  @Field()
+  jobStatus: string;
 
   @Field({ nullable: true })
   jobType: string;

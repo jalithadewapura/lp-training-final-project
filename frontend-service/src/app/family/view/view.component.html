@@ -1,0 +1,109 @@
+<div class="d-flex justify-content-center">
+    <div class="col-11">
+        <div class="row">
+            <h2 class="py-4 heading col-md-6">Add Members</h2>
+            <div class="d-flex align-content-center justify-content-end flex-wrap col-md-6">
+                <a class="btn btn-info float-right" [routerLink]="['/family', id, 'add-members']">
+                    Add Member
+                </a>
+            </div>
+        </div>
+        <div class="family-details mb-3">
+            <!-- Name and Address -->
+            <div class="form-row">
+                <div class="form-group col-md-2 font-weight-bold">
+                    Name
+                </div>
+                <div class="form-group col-md-4">
+                    {{ family.name }}
+                </div>
+
+                <div class="form-group col-md-2 font-weight-bold">
+                    Address
+                </div>
+                <div class="form-group col-md-4">
+                    {{ family.address }}
+                </div>
+            </div>
+            <!-- /.Name and Address -->
+            <!-- Province and District -->
+            <div class="form-row">
+                <div class="form-group col-md-2 font-weight-bold">
+                    Province
+                </div>
+                <div class="form-group col-md-4">
+                    {{ family.province.name }}
+                </div>
+                <div class="form-group col-md-2 font-weight-bold">
+                    District
+                </div>
+                <div class="form-group col-md-4">
+                    {{ family.district.name }}
+                </div>
+            </div>
+            <!-- /.Province and District -->
+            <!-- Division and Vasama -->
+            <div class="form-row">
+                <div class="form-group col-md-2 font-weight-bold">
+                    Division
+                </div>
+                <div class="form-group col-md-4">
+                    {{ family.division.name }}
+                </div>
+                <div class="form-group col-md-2 font-weight-bold">
+                    Vasama
+                </div>
+                <div class="form-group col-md-4">
+                    {{ family.vasama.name }}
+                </div>
+            </div>
+            <!-- /.Division and Vasama -->
+            <!-- Members and Monthly Income -->
+            <div class="form-row">
+                <div class="form-group col-md-2 font-weight-bold">
+                    Members
+                </div>
+                <div class="form-group col-md-4">
+                    {{ family.civilians.length }}
+                </div>
+                <div class="form-group col-md-2 font-weight-bold">
+                    Monthly Income
+                </div>
+                <div class="form-group col-md-4">
+                    {{ family.monthlyIncome | currency: 'Rs. '}}
+                </div>
+            </div>
+            <!-- /.Members and Monthly Income -->
+        </div>
+        <div class="table-responsive" *ngIf="family.civilians.length > 0">
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>NID</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>DOB</th>
+                        <th>Job Details</th>
+                        <th>Monthly Income</th>
+                        <th class="text-center action">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let civilian of family.civilians">
+                        <td>{{ civilian.nid }}</td>
+                        <td>{{ civilian.firstName }}</td>
+                        <td>{{ civilian.lastName }}</td>
+                        <td>{{ civilian.dob }}</td>
+                        <td>{{ civilian.jobCategory }}</td>
+                        <td>{{ civilian.monthlyIncome }}</td>
+                        <td class="d-flex justify-content-between">
+                            <a class="btn btn-info btn-sm btn-action">View</a>
+                            <a class="btn btn-warning btn-sm btn-action">Edit</a>
+                            <a class="btn btn-danger btn-sm btn-action">Delete</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -23,6 +23,10 @@ export class VasamaService {
     return await this.vasamaRepository.findOne(id);
   }
 
+  async findByDivision(divisionId: string) {
+    return await this.vasamaRepository.find({ divisionId: divisionId });
+  }
+
   async update(updateVasamaInput: UpdateVasamaInput) {
     return await this.vasamaRepository.save(updateVasamaInput);
   }

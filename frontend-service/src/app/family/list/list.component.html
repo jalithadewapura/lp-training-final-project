@@ -1,1 +1,34 @@
-<p>list works!</p>
+<div class="d-flex justify-content-center">
+    <div class="col-11">
+        <div class="row">
+            <h2 class="py-4 heading col-md-6">All Families</h2>
+            <div class="col-12">
+
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Members</th>
+                            <th>Income</th>
+                            <th>Main Income Stream</th>
+                            <th class="text-center action">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let family of families">
+                            <td>{{ family.name }}</td>
+                            <td>{{ family.civilians.length }}</td>
+                            <td class="text-right">{{ family.monthlyIncome | currency:'Rs. '}}</td>
+                            <td>Private Jobs</td>
+                            <td class="d-flex justify-content-between">
+                                <a class="btn btn-info btn-sm btn-action" [routerLink]="['/family', family.id]">View</a>
+                                <a class="btn btn-warning btn-sm btn-action">Edit</a>
+                                <a class="btn btn-danger btn-sm btn-action">Delete</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

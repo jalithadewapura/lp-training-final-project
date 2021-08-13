@@ -1,4 +1,4 @@
-import { ObjectType, Field, ID, Directive } from '@nestjs/graphql';
+import { ObjectType, Field, ID, Directive, Int } from '@nestjs/graphql';
 import { District } from 'src/family/entities/district.entity';
 import { Province } from 'src/family/entities/province.entity';
 import { Division } from 'src/family/entities/division.entity';
@@ -44,4 +44,7 @@ export class Family {
 
   @Field(() => [Civilian])
   civilians: Civilian[]
+
+  @Field()
+  monthlyIncome: number;
 }

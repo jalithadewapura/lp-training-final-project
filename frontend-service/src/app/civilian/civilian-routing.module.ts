@@ -5,7 +5,7 @@ import { CreateComponent } from './create/create.component';
 import { UpdateComponent } from './update/update.component';
 
 const routes: Routes = [
-  { path: 'civilian/create', component: CreateComponent },
+  { path: 'family/:familyId/add-members', component: CreateComponent },
   { path: 'civilian/update/:id', component: UpdateComponent },
 ];
 
@@ -13,4 +13,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class CivilianRoutingModule {}
+export class CivilianRoutingModule { }

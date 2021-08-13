@@ -28,6 +28,9 @@ export class CreateCivilianInput {
   @Field()
   materialStatus: MaterialStatus;
 
+  @Field()
+  jobStatus: string;
+
   @Field({ nullable: true })
   jobType: string;
 

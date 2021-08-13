@@ -24,6 +24,11 @@ export class DistrictResolver {
     return this.districtService.findOne(id);
   }
 
+  @Query(() => [District], { name: 'getDistrictsByProvince' })
+  findByProvince(@Args('provinceId') provinceId: string) {
+    return this.districtService.findByProvince(provinceId);
+  }
+
   @Mutation(() => District)
   updateDistrict(@Args('updateDistrictInput') updateDistrictInput: UpdateDistrictInput) {
     return this.districtService.update(updateDistrictInput);

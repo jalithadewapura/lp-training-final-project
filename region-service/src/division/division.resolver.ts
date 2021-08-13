@@ -24,6 +24,11 @@ export class DivisionResolver {
     return this.divisionService.findOne(id);
   }
 
+  @Query(() => [Division], { name: 'getDivisionsByDistrict' })
+  findByDistrict(@Args('districtId') districtId: string) {
+    return this.divisionService.findByDistrict(districtId);
+  }
+
   @Mutation(() => Division)
   updateDivision(@Args('updateDivisionInput') updateDivisionInput: UpdateDivisionInput) {
     return this.divisionService.update(updateDivisionInput);

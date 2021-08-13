@@ -30,6 +30,9 @@ export class Civilian {
     @Prop()
     materialStatus: MaterialStatus;
 
+    @Prop()
+    jobStatus: string;
+
     @Prop({ nullable: true })
     jobType: string;
 

@@ -28,6 +28,10 @@ export class DistrictService {
     });
   }
 
+  findByProvince(provinceId: string) {
+    return this.districtRepository.find({ provinceId: provinceId });
+  }
+
   update(updateDistrictInput: UpdateDistrictInput) {
     return this.districtRepository.save(updateDistrictInput);
   }

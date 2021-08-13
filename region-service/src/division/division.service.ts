@@ -28,6 +28,10 @@ export class DivisionService {
     });
   }
 
+  findByDistrict(districtId: string) {
+    return this.divisionRepository.find({ districtId: districtId });
+  }
+
   update(updateDivisionInput: UpdateDivisionInput) {
     return this.divisionRepository.save(updateDivisionInput);
   }

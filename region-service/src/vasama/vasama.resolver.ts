@@ -24,6 +24,11 @@ export class VasamaResolver {
     return this.vasamaService.findOne(id);
   }
 
+  @Query(() => [Vasama], { name: 'getVasamByDivision' })
+  findByDivision(@Args('divisionId') divisionId: string) {
+    return this.vasamaService.findByDivision(divisionId);
+  }
+
   @Mutation(() => Vasama)
   updateVasama(@Args('updateVasamaInput') updateVasamaInput: UpdateVasamaInput) {
     return this.vasamaService.update(updateVasamaInput);

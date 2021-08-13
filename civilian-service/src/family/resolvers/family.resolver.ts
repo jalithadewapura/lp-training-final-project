@@ -67,5 +67,18 @@ export class FamilyResolver {
   vasama(@Parent() family: Family) {
     return { __type: "Vasama", id: family.vasamaId };
   }
+
+
+  @ResolveField()
+  async monthlyIncome(@Parent() family: Family) {
+    const civilians = await this.familyService.getCivilians(family.id);
+    let mIncome: number = 0;
+    civilians.forEach((civilian) => {
+      if (typeof civilian.monthlyIncome == "number") {
+        mIncome += civilian.monthlyIncome;
+      }
+    });
+    return mIncome;
+  }
 }
 

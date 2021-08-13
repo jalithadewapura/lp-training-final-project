@@ -3,15 +3,18 @@
         <div class="row">
             <h2 class="py-4 heading">Create Civilian</h2>
         </div>
-        <form>
+        <form (ngSubmit)="onSubmit(f)" #f="ngForm">
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="firstName">First Name</label>
-                    <input type="text" class="form-control form-control-sm" id="firstName" placeholder="First Name">
+                    <input type="text" required class="form-control form-control-sm" ngModel name="firstName"
+                        #firstName="ngModel" id="firstName" placeholder="First Name">
+                    <div class="alert alert-danger" *ngIf="firstName.touched && !firstName.valid">First Name is
+                        required.</div>
                 </div>
                 <div class="form-group col-md-6">
                     <label for="lastName">Last Name</label>
-                    <input type="text" class="form-control form-control-sm" id="lastName"
+                    <input type="text" class="form-control form-control-sm" ngModel name="lastName" id="lastName"
                         placeholder="Last Name / Surname">
                 </div>
             </div>
@@ -19,29 +22,39 @@
 
             <div class="form-row">
                 <div class="form-group col-md-6">
-                    <label for="name">Date of Birth</label>
+                    <label for="dob">Date of Birth</label>
                     <div class="input-group">
-                        <input type="text" name="dateOfBirth" class="form-control form-control-sm"
-                            placeholder="yyyy-mm-dd" [(ngModel)]="selectedDate" ngbDatepicker #d="ngbDatepicker" />
-                        <span class="input-group-text" (click)="d.toggle()">
-                            <i class="bx bx-calendar"></i>
-                        </span>
+                        <input type="text" required pattern="\d{4}-\d{2}-\d{2}" class="form-control form-control-sm"
+                            ngModel name="dob" #dob="ngModel" placeholder="YYYY-MM-DD" (change)="onChangeDob(dob)">
+                        <!-- <div class="input-group-append"> // [matDatepicker]="picker"
+                            <span class="input-group-text calendar-icon">
+                                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                <mat-datepicker #picker></mat-datepicker>
+                            </span>
+                        </div> -->
+                    </div>
+                    <div class="alert alert-danger" *ngIf="dob.touched && dob.invalid">
+                        <div *ngIf="dob.errors.required">DOB is required.</div>
+                        <div *ngIf="dob.errors.pattern">DOB doesn't match the pattern.</div>
                     </div>
                 </div>
                 <!-- /.Date of Birth -->
                 <div class="form-group col-md-6">
                     <label for="nid">National Identity Number</label>
-                    <input type="text" class="form-control form-control-sm" id="nid" placeholder="12 digits format">
+                    <input type="text" class="form-control form-control-sm" ngModel name="nid" id="nid"
+                        placeholder="12 digits format">
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="phone">Phone</label>
-                    <input type="text" class="form-control form-control-sm" id="phone" placeholder="Phone Number">
+                    <input type="text" class="form-control form-control-sm" ngModel name="phone" id="phone"
+                        placeholder="Phone Number">
                 </div>
                 <div class="form-group col-md-6">
                     <label for="email">Email Address</label>
-                    <input type="email" class="form-control form-control-sm" id="email" placeholder="user@example.com">
+                    <input type="email" class="form-control form-control-sm" ngModel name="email" id="email"
+                        placeholder="user@example.com">
                 </div>
             </div>
             <!-- /.phone and email  -->
@@ -50,13 +63,18 @@
                     <label for="gender">Gender</label>
                     <div class="row col-12">
                         <div class="col-lg-5 form-check">
-                            <input type="radio" class="form-check-input" name="gender" id="male" />
+                            <input type="radio" class="form-check-input" required ngModel name="gender"
+                                #gender="ngModel" value="MALE" id="male" />
                             <label class="form-check-label" for="male">Male</label>
                         </div>
                         <div class="col-lg-5 form-check">
-                            <input type="radio" class="form-check-input" name="gender" id="female" />
+                            <input type="radio" class="form-check-input" required ngModel name="gender"
+                                #gender="ngModel" value="FEMALE" id="female" />
                             <label class="form-check-label" for="female">Female</label>
                         </div>
+                    </div>
+                    <div class="alert alert-danger" *ngIf="gender.touched && gender.invalid">
+                        <div *ngIf="gender.errors.required">DOB is required.</div>
                     </div>
                 </div>
                 <!-- Gender -->
@@ -64,42 +82,68 @@
                     <label for="gender">Material Status</label>
                     <div class="row col-12">
                         <div class="col-lg-3 form-check">
-                            <input type="radio" class="form-check-input" name="status" id="single" />
+                            <input type="radio" class="form-check-input" required ngModel name="status"
+                                #status="ngModel" value="SINGLE" id="single" />
                             <label class="form-check-label" for="single">Single</label>
                         </div>
                         <div class="col-lg-3 form-check">
-                            <input type="radio" class="form-check-input" name="status" id="married" />
+                            <input type="radio" class="form-check-input" required ngModel name="status"
+                                #status="ngModel" value="MARRIED" id="married" />
                             <label class="form-check-label" for="married">Married</label>
                         </div>
                         <div class="col-lg-3 form-check">
-                            <input type="radio" class="form-check-input" name="status" id="divorce" />
+                            <input type="radio" class="form-check-input" required ngModel name="status"
+                                #status="ngModel" value="DIVORCE" id="divorce" />
                             <label class="form-check-label" for="divorce">Divorce</label>
                         </div>
                         <div class="col-lg-3 form-check">
-                            <input type="radio" class="form-check-input" name="status" id="windowed" />
+                            <input type="radio" class="form-check-input" required ngModel name="status"
+                                #status="ngModel" value="WINDOWED" id="windowed" />
                             <label class="form-check-label" for="windowed">Windowed</label>
                         </div>
+                    </div>
+                    <div class="alert alert-danger" *ngIf="status.touched && status.invalid">
+                        <div *ngIf="status.errors.required">DOB is required.</div>
                     </div>
                 </div>
                 <!-- /.material Status -->
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
+                    <label for="jobStatus">Job Status</label>
+                    <select class="custom-select custom-select-sm" ngModel name="jobStatus" #jStatus="ngModel" required
+                        id="jobStatus">
+                        <!-- use API get the data -->
+                        <option *ngFor="let jStatus of jobStatus" value="{{ jStatus.id }}">{{ jStatus.name }}</option>
+                    </select>
+                    <div class="alert alert-danger" *ngIf="jStatus.touched && jStatus.invalid">
+                        <div *ngIf="jStatus.errors.required">DOB is required.</div>
+                    </div>
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label for="monthlyIncome">Monthly Income</label>
+                    <input type="number" class="form-control form-control-sm" ngModel name="monthlyIncome"
+                        id="monthlyIncome" placeholder="Amount in Rupees">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
                     <label for="jobType">Job Type</label>
-                    <select class="custom-select custom-select-sm" id="jobType">
+                    <select class="custom-select custom-select-sm" ngModel name="jobType" id="jobType">
                         <!-- use API get the data -->
                         <option selected>--select--</option>
-                        <option value="1">Goverment</option>
-                        <option value="2">Private</option>
-                        <option value="3">Own Business</option>
-                        <option value="3">Other</option>
+                        <option *ngFor="let jobtype of jobTypes" value="{{ jobtype.id }}">{{ jobtype.name }}</option>
+
                     </select>
                 </div>
                 <div class="form-group col-md-6">
                     <label for="jobCategory">Job Category</label>
-                    <select class="custom-select custom-select-sm" id="jobCategory">
+                    <select class="custom-select custom-select-sm" ngModel name="jobCategory" id="jobCategory">
                         <!-- use API get the data -->
                         <option selected>--select--</option>
+                        <option *ngFor="let jobCategory of jobCategories" value="{{ jobCategory.id }}">{{
+                            jobCategory.name }}</option>
                     </select>
                 </div>
             </div>
@@ -107,21 +151,24 @@
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="educationLevel">Education Level</label>
-                    <select class="custom-select custom-select-sm" id="educationLevel">
+                    <select class="custom-select custom-select-sm" ngModel name="educationLevel" id="educationLevel">
                         <!-- use API get the data -->
                         <option selected>--select--</option>
+                        <option *ngFor="let eLevel of educationLevels" value="{{ eLevel.id }}">{{
+                            eLevel.name }}</option>
                     </select>
                 </div>
                 <div class="form-group col-md-6">
                     <label for="educationDetails">Education Details</label>
-                    <input type="text" class="form-control form-control-sm" id="educationDetails"
-                        placeholder="Job details">
+                    <input type="text" class="form-control form-control-sm" ngModel name="educationDetails"
+                        id="educationDetails" placeholder="Job details">
 
                 </div>
             </div>
+            <p>{{ f.value | json }}</p>
             <!-- /.educational details -->
-            <button class="btn btn-info mr-2" type="submit">Create</button>
-            <button class="btn btn-secondary" type="button">Close</button>
+            <button class="btn btn-info mt-2 mr-2" [disabled]="f.invalid">Create</button>
+            <a class="btn btn-secondary mt-2" [routerLink]="['/family', familyId]" type="button">Close</a>
         </form>
     </div>
 </div>

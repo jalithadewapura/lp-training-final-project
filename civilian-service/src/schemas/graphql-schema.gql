@@ -37,6 +37,7 @@ type Civilian {
   email: String
   gender: String!
   materialStatus: String!
+  jobStatus: String!
   jobType: String
   jobCategory: String
   monthlyIncome: Float
@@ -59,6 +60,7 @@ type Family {
   vasamaId: String!
   vasama: Vasama!
   civilians: [Civilian!]!
+  monthlyIncome: Float!
 }
 
 type District {
@@ -102,6 +104,7 @@ input CreateCivilianInput {
   email: String
   gender: String!
   materialStatus: String!
+  jobStatus: String!
   jobType: String
   jobCategory: String
   monthlyIncome: Float
@@ -119,6 +122,7 @@ input UpdateCivilianInput {
   email: String
   gender: String
   materialStatus: String!
+  jobStatus: String!
   jobType: String
   jobCategory: String
   monthlyIncome: Float

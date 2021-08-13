@@ -8,3 +8,27 @@
   width: 100%;
   overflow: hidden;
 }
+
+.btn-action {
+  width: 70px;
+  padding: 1px;
+  margin: 0px;
+}
+
+.action {
+  width: 240px;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.form-control.ng-invalid.ng-touched {
+  border: 2px solid red;
+}

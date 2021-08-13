@@ -50,10 +50,13 @@ type Query {
   provinceById(id: String!): Province!
   getAllDistrict: [District!]!
   districtById(id: String!): District!
+  getDistrictsByProvince(provinceId: String!): [District!]!
   getAllDivision: [Division!]!
   divisionById(id: String!): Division!
+  getDivisionsByDistrict(districtId: String!): [Division!]!
   getAllVasama: [Vasama!]!
   vasamaById(id: String!): Vasama!
+  getVasamByDivision(divisionId: String!): [Vasama!]!
 }
 
 type Mutation {

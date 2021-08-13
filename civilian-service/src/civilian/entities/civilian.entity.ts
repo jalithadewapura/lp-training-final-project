@@ -30,6 +30,9 @@ export class Civilian {
   @Field()
   materialStatus: MaterialStatus;
 
+  @Field()
+  jobStatus: string;
+
   @Field({ nullable: true })
   jobType: string;
 
@@ -54,7 +57,7 @@ export class Civilian {
 }
 
 export enum Gender {
-  Male = 'Male',
+  MALE = 'MALE',
   FEMALE = 'FEMALE',
 }
 
